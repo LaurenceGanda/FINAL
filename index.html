@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Conference Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        
+        
+        <h1><center>PSITS CONTESTANT😎</center></h1>
+        
+        <form id="registrationForm">
+           
+            <div class="form-group">
+                <label class="form-label">Full Name:</label>
+                <input type="text" id="fullName" onblur="validateName()">
+                <div id="nameError" class="error">Please enter your full name</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email:</label>
+                <input type="email" id="email" onblur="validateEmail()">
+                <div id="emailError" class="error">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone (+63):</label>
+                <input type="tel" id="phone" onblur="validatePhone()">
+                <div id="phoneError" class="error">Please enter a valid phone number</div>
+            </div>
+
+           
+            <div class="form-group">
+                <label class="form-label"><center>Select your salihan:</center></label>
+                <select id="track">
+                    <option value="">Choose</option>
+                    <option value="web">Programming</option>
+                    <option value="mobile">Data Visualization</option>
+                    <option value="ai">E-Waste</option>
+                    <option value="cloud">ML / Dota</option>
+                </select>
+            </div>
+
+
+            <!-- Experience Level -->
+            <div class="form-group-exp">
+                <label class="form-label">Experience Level:</label>
+                <div class="checkbox-group">
+                    <input type="radio" id="beginner" name="experience" value="beginner">
+                    <label for="beginner">Beginner</label>
+                    
+                    <input type="radio" id="intermediate" name="experience" value="intermediate">
+                    <label for="intermediate">Intermediate</label>
+                    
+                    <input type="radio" id="advanced" name="experience" value="advanced">
+                    <label for="advanced">Advanced</label>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group-com">
+                <label class="form-label">Any Comments:</label>
+                <textarea id="dietary" rows="3"></textarea>
+            </div>
+
+            <center>
+                <button class="buttones" type="button" onclick="validateForm()">Register Now</button>
+            </center>
+        </form>
+    </div>
+
+    <script>
+        // Validation functions
+        function validateName() {
+            const nameInput = document.getElementById('fullName');
+            const nameError = document.getElementById('nameError');
+            const isValid = nameInput.value.trim().length >= 3;
+            
+            nameError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const isValid = emailPattern.test(emailInput.value);
+            
+            emailError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const phonePattern = /^\d{10}$/;
+            const isValid = phonePattern.test(phoneInput.value.replace(/\D/g, ''));
+            
+            phoneError.style.display = isValid ? 'none' : 'block';
+            return isValid;
+        }
+
+        function validateForm() {
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isPhoneValid = validatePhone();
+            
+            if (isNameValid && isEmailValid && isPhoneValid) {
+                alert('Registration submitted successfully!');
+                // Form would typically submit to a server here
+            } else {
+                alert('Please fix the errors in the form before submitting.');
+            }
+        }
+    </script>
+</body>
+</html>
